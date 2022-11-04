@@ -1,0 +1,29 @@
+.item-menu {
+    width: 100%;
+    padding: .8rem 2.5rem;
+    position: relative;
+    display: block;
+}
+
+.item-menu:hover,
+.item-menu:focus {
+    color: #C007E5;
+}
+
+.item-menu::after {
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-radius: 100%;
+    position: absolute;
+    top: 1.45rem;
+    right: 2.5rem;
+    background-color: #C007E5;
+    pointer-events: none;
+    transition: .2s;
+}
+
+.item-menu:hover::after {
+    width: 8px;
+    height: 8px;
+}

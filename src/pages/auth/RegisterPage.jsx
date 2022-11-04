@@ -51,6 +51,32 @@ export const RegisterPage = () => {
             onChange={onInputChange}
           />
 
+          <div className="my-5 w-full">
+            <p className="mb-2 font-bold">¿Qué tipo de usuario eres?</p>
+            <label htmlFor="type_user_admin" className="mr-5">
+              <input 
+                type="radio" 
+                name="type_user" 
+                id="type_user_admin" 
+                value={type_user} 
+                onChange={onInputChange}
+                className="mr-2"
+                />
+              Administrador
+            </label>
+            <label htmlFor="type_user_client">
+              <input 
+                type="radio" 
+                name="type_user" 
+                id="type_user_client" 
+                value={type_user} 
+                onChange={onInputChange}
+                className="mr-2"
+              />
+              Cliente
+            </label>
+          </div>
+
           <button type="submit" className="bg-primary py-3 px-4 rounded-md">Registrarse</button>
         </form>
 

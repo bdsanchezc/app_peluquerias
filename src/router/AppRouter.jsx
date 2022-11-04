@@ -1,11 +1,13 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { DashboardLayout } from "../layout";
 import { AuthLayout } from "../layout/AuthLayout";
 import { AuthRoute } from "../pages/auth/routes/AuthRoute";
-import { DashboardPage } from '../pages/dashboard'
+import { AdminRoutes } from "../pages/dashboard/admin/routes";
 
 export const AppRouter = () => {
 
-    const authStatus = 'no_auth';
+    const authStatus = 'auth';
+    const typeUser = 'admin';
 
     return (
         <Routes>
@@ -19,7 +21,17 @@ export const AppRouter = () => {
                             </AuthLayout> 
                         }
                     />
-                :   <Route path="/*" element={ <DashboardPage /> }/>
+                :   <Route 
+                        path="/*" 
+                        element={ 
+                            <DashboardLayout>
+                                {
+                                    (typeUser === 'admin') 
+                                        && <AdminRoutes />
+                                }
+                            </DashboardLayout>
+                        }
+                    />
             }
 
             <Route path="/*" element={ <Navigate to="/auth/login" /> }/>
