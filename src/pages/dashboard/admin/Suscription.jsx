@@ -1,5 +1,5 @@
 
-export const AdminSuscriptionPage = () => {
+export const Suscription = () => {
     return (
         <div>AdminSuscriptionPage</div>
     )

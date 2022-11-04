@@ -1,5 +1,5 @@
 
-export const AdminEmployeePage = () => {
+export const Employee = () => {
     return (
         <div>AdminEmployeePage</div>
     )

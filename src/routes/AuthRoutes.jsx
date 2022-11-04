@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { LoginPage, RegisterPage } from '../';
+import { LoginPage, RegisterPage } from '../pages/auth';
 
-export const AuthRoute = () => {
+export const AuthRoutes = () => {
   return (
     <Routes>
         <Route path='login' element={<LoginPage />} />

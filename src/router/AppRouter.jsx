@@ -1,13 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { DashboardLayout } from "../layout";
-import { AuthLayout } from "../layout/AuthLayout";
-import { AuthRoute } from "../pages/auth/routes/AuthRoute";
-import { AdminRoutes } from "../pages/dashboard/admin/routes";
+import { DashboardLayout, AuthLayout } from "../layout";
+import { AuthRoutes, AdminRoutes, ClientRoutes, EmployeeRoutes } from "../routes";
 
 export const AppRouter = () => {
 
     const authStatus = 'auth';
-    const typeUser = 'admin';
+    const typeUser = 'employee';
 
     return (
         <Routes>
@@ -17,7 +15,7 @@ export const AppRouter = () => {
                         path="/auth/*" 
                         element={ 
                             <AuthLayout>
-                                <AuthRoute />
+                                <AuthRoutes />
                             </AuthLayout> 
                         }
                     />
@@ -25,10 +23,9 @@ export const AppRouter = () => {
                         path="/*" 
                         element={ 
                             <DashboardLayout>
-                                {
-                                    (typeUser === 'admin') 
-                                        && <AdminRoutes />
-                                }
+                                { (typeUser === 'admin') && <AdminRoutes /> }
+                                { (typeUser === 'client') && <ClientRoutes /> }
+                                { (typeUser === 'employee') && <EmployeeRoutes /> }
                             </DashboardLayout>
                         }
                     />
