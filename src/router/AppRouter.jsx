@@ -4,7 +4,7 @@ import { AuthRoutes, AdminRoutes, ClientRoutes, EmployeeRoutes } from "../routes
 
 export const AppRouter = () => {
 
-    const authStatus = 'auth';
+    const authStatus = 'no_auth';
     const typeUser = 'employee';
 
     return (
