@@ -43,3 +43,20 @@ p {
   background-size: cover;
   background-blend-mode: multiply;
 }
+
+.shadow-lg-primary {
+  box-shadow: 0 15px 15px -12px rgba(231, 105, 157, .35);
+}
+
+.bg-card-welcome {
+  background-image: url('../public/bacground.svg');
+  background-position: right;
+  background-size: cover;
+}
+
+.btn-outline-primary {
+  border: 1px solid #E7699D;
+  color: #E7699D;
+  padding: .65rem 1rem;
+  font-weight: 700;
+}

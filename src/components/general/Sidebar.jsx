@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
 import { AdminMenu, ClientMenu, EmployeeMenu } from "../menu";
 
 export const Sidebar = () => {
-    
-    const typeUser = 'employee';
+
+    const { user } = useSelector( state => state.auth );
+    const { type } = user;
     
     return (
         <div className='w-1/3 max-w-xs h-full bg-white py-5 shadow-lg'>
@@ -12,9 +14,9 @@ export const Sidebar = () => {
                 <div className="border-b-2 border-b-gray-100 w-full h-px block mt-8"></div>
             </div>
 
-            { (typeUser === 'admin') && <AdminMenu /> }
-            { (typeUser === 'client') && <ClientMenu /> }
-            { (typeUser === 'employee') && <EmployeeMenu /> }
+            { (type === 'admin') && <AdminMenu /> }
+            { (type === 'client') && <ClientMenu /> }
+            { (type === 'employee') && <EmployeeMenu /> }
             
 
         </div>

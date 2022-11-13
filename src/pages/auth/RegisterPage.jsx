@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { InputField, InputRadio } from "../../components/general";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../store/auth";
 
 const options = [{
     idInput: "type_user_admin",
@@ -14,10 +16,11 @@ const options = [{
 
 export const RegisterPage = () => {
     
+    const dispatch = useDispatch();
     const { control, handleSubmit, formState: { errors } } = useForm({criteriaMode: "all", mode: "onBlur"});
     
     const onSubmit = (data) => {
-        console.log({data});
+        dispatch(registerUser(data))
     }
 
     return (
