@@ -1,10 +1,13 @@
-import { Sidebar } from "../components/general/Sidebar"
+import { RightBar, Sidebar } from "../components/general";
 
 export const DashboardLayout = ({children}) => {
     return (
-        <section className="w-full h-full bg-gray-200 flex">
+        <section className="w-full h-full flex justify-between">
             <Sidebar />
-            {children}
+            <div className="flex-1 py-16 px-20">
+                {children}
+            </div>
+            <RightBar />
         </section>
     )
 }

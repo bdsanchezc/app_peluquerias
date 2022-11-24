@@ -5,7 +5,7 @@
 html,
 body,
 #root {
-  height: 100%;
+  height: 100% !important;
 }
 
 body {
@@ -20,11 +20,20 @@ p {
 }
 
 .bg-primary {
+  background-color: #529DD3;
+  color: #FFF;
+}
+
+.bg-alternative {
   background-color: #E7699D;
   color: #FFF;
 }
 
 .color-primary {
+  color: #529DD3;
+}
+
+.color-alternative {
   color: #E7699D;
 }
 
@@ -42,4 +51,73 @@ p {
   background-position: center;
   background-size: cover;
   background-blend-mode: multiply;
+}
+
+.shadow-lg-primary {
+  box-shadow: 0 15px 15px -12px rgba(231, 105, 157, .35);
+}
+
+.bg-card-welcome {
+  background-image: url('../public/bacground.svg');
+  background-position: right;
+  background-size: cover;
+}
+
+.btn-outline-primary {
+  border: 1px solid #529DD3;
+  color: #529DD3;
+  padding: .65rem 1rem;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.btn-outline-alternative {
+  border: 1px solid #E7699D;
+  color: #E7699D;
+  padding: .65rem 1rem;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+/* Modal */
+
+.ReactModalPortal > div{
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity .2s ease-in-out;
+  z-index: 999;
+}
+
+.modal-fondo {
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal {
+  background: white;
+  border-radius: 5px;
+  color: rgb(51, 51, 51);
+  display: inline;
+  max-height: calc(100vh - 10%);
+  width: 100%;
+  max-width: 620px;
+  outline: none;
+  padding: 20px 32px;
 }
