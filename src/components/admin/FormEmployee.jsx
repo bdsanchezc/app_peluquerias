@@ -1,41 +1,22 @@
-import { Link } from "react-router-dom";
-import { Controller, useForm } from "react-hook-form";
-import { InputField, InputRadio } from "../../components/general";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../../store/auth";
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { InputField } from '../general';
+import { onRegisterEmployee } from '../../store/employee';
 
-const options = [{
-    idInput: "type_user_admin",
-    label: "Administrador",
-    value: "admin"
-}, {
-    idInput: "type_user_client",
-    label: "Cliente",
-    value: "client"
-}]
+export const FormEmployee = () => {
 
-export const RegisterPage = () => {
-    
     const dispatch = useDispatch();
-    const { control, handleSubmit, formState: { errors } } = useForm({criteriaMode: "all", mode: "onBlur"});
-    
+    const { control, handleSubmit, formState : { errors } } = useForm({criteriaMode: 'all', mode: 'onBlur'});
+    const { company } = useSelector( state => state.company );
+
     const onSubmit = (data) => {
-        dispatch(registerUser(data))
+        dispatch( onRegisterEmployee({...data, company: company._id}) );
     }
 
     return (
-        <div className="w-full h-full flex flex-col justify-center px-10">
-            <div className="py-6 mb-5">
-                <img src="/logo.svg" alt="styled spapp" className="w-52" />
-            </div>
-
-            <h2 className="font-bold text-2xl mb-5">Iniciar sesión</h2>
-            <p>
-                Bienvenido a styled spapp, para acceder al sistema utiliza las
-                credenciales creadas anteriormente.
-            </p>
-
-            <form className="mb-5" autoComplete="off" onSubmit={handleSubmit(onSubmit)} >
+        <>
+            <h1 className="font-bold text-xl border-b border-gray-100">Registrar empleado</h1>
+            <form autoComplete="off" className="w-full grid grid-cols-2 gap-x-5 max-w-5xl" onSubmit={handleSubmit(onSubmit)}>
                 <Controller 
                     name="name"
                     defaultValue=""
@@ -81,6 +62,32 @@ export const RegisterPage = () => {
                     }
                 />
                 <Controller
+                    name="identification"
+                    defaultValue=""
+                    control={control}
+                    rules={{
+                        minLength: {
+                        value: 5,
+                        message: "El número de identificación no es válido."
+                        },
+                        required: {
+                        value: true,
+                        message: 'El número de identificación es requerido.'
+                        }
+                    }}
+                    render={
+                        ({field: {onChange, value}}) => 
+                        <InputField
+                            label="Número de identificación"
+                            inputName="identification"
+                            type="text"
+                            error={errors?.identification?.message}
+                            value={value}
+                            onChange={onChange}
+                        />
+                    }
+                />
+                <Controller
                     name="email"
                     defaultValue=""
                     control={control}
@@ -107,63 +114,32 @@ export const RegisterPage = () => {
                     }
                 />
                 <Controller
-                    name="password"
+                    name="phone"
                     defaultValue=""
                     control={control}
                     rules={{
                         minLength: {
-                        value: 8,
-                        message: "La contraseña no es válida."
+                            value: 10,
+                            message: "El número de teléfono no es válido."
                         },
                         required: {
-                        value: true,
-                        message: 'La contraseña es requerida.'
+                            value: true,
+                            message: "El número de teléfono es obligatorio."
                         }
                     }}
-                    render={
-                        ({field: {onChange, value}}) => 
+                    render={({field: {onChange, value}}) => 
                         <InputField
-                            label="Contraseña"
-                            inputName="password"
-                            type="password"
-                            error={errors?.password?.message}
+                            label="Numero de télefono (60X....)"
+                            inputName="phone"
+                            type="tel"
+                            error={errors?.phone?.message}
                             value={value}
                             onChange={onChange}
                         />
                     }
                 />
-                <Controller
-                    name="type_user"
-                    control={control}
-                    rules={{
-                        required: {
-                            value: true,
-                            message: "El tipo de usuario es requerido."
-                        }
-                    }}
-                    render={
-                        ({field: {onChange, value}}) => 
-                        <InputRadio
-                            question="¿Qué tipo de usuario eres?" 
-                            inputName="type_user"
-                            onChange={onChange}
-                            error={errors?.type_user?.message}
-                            options={options}
-                        />
-                    }
-                />
-                <input type="submit" value="Registrarse" className="bg-primary py-3 px-4 rounded-md" />
+                <input type="submit" value="Guardar" className="bg-primary w-fit py-3 px-4 rounded-md col-start-1 mt-5" />
             </form>
-
-            <div className="mt-2">
-                <h4 className="font-bold mb-2">¿Ya tienes una cuenta?</h4>
-                <p className="mb-5">
-                    Si ya tienes una cuenta, haz clic en el siguiente enlace para iniciar sesión
-                </p>
-                <Link to="/auth" className="color-alternative font-bold">
-                    Ir a inicio de sesión
-                </Link>
-            </div>
-        </div>
+        </>
     )
 }

@@ -14,18 +14,18 @@ export const ItemListEmployee = ({user}) => {
 
                 <div className="flex flex-col">
                     <div className="flex items-center">
-                        <i class="fa-regular fa-envelope color-primary"></i>
+                        <i className="fa-regular fa-envelope color-primary"></i>
                         <span className="ml-2">pedrodoe@spapp.com</span>
                     </div>
                     <div className="flex items-center">
-                        <i class="fa-regular fa-comments color-primary"></i>
+                        <i className="fa-regular fa-comments color-primary"></i>
                         <span className="ml-2">542 548 2165</span>
                     </div>
                 </div>
 
                 <div>
                     <button className="text-blue-500">
-                        <i class="fa-regular fa-eye"></i>
+                        <i className="fa-regular fa-eye"></i>
                         <span className="ml-2 font-bold">Ver datos</span>
                     </button>
                 </div>

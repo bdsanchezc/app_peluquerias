@@ -1,10 +1,14 @@
+import { useSelector } from "react-redux";
 import { EmployeeList, WelcomeCard } from "../../../components/admin";
 
 
 export const Dashboard = () => {
+
+    const { user } = useSelector( state => state.auth );
+
     return (
         <>
-            <WelcomeCard name="Jhon Doe" />
+            <WelcomeCard name={user.name} />
             <EmployeeList />
 
             <div className="mt-3">

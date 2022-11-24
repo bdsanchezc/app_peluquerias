@@ -12,7 +12,6 @@ export const AppRouter = () => {
     const { status, user } = useSelector( state => state.auth );
 
     if(status === 'checking') {
-        console.log('Verificando.....');
     }
 
     useEffect(() => {
@@ -20,9 +19,7 @@ export const AppRouter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
-    // const authStatus = 'no_auth';
     const {type} = user;
-
 
     return (
         <Routes>

@@ -1,5 +1,8 @@
 import { baseApi } from '../../api';
 import { SweetAlert } from '../../components/general';
+import { onClearCompany } from '../company/companySlice';
+import { onClearServices } from '../services';
+import { onCloseModal } from '../ui';
 import { onChecking, onLogin, onLogout } from './authSlice';
 
 export const loginUser = (credentials) => {
@@ -15,7 +18,7 @@ export const loginUser = (credentials) => {
             localStorage.setItem('token-init-date', new Date().getTime());
 
             dispatch(onLogin({
-                name: `${data.name} ${data.last_name}`,
+                name: `${data.name}`,
                 uid: data.uid,
                 type: data.type_user
             }));
@@ -57,7 +60,7 @@ export const registerUser = (dataRegister) => {
             localStorage.setItem('token-init-date', new Date().getTime());
 
             dispatch(onLogin({
-                name: `${data.name} ${data.last_name}`,
+                name: `${data.name}`,
                 uid: data.uid,
                 type: data.type_user 
             }));
@@ -136,7 +139,15 @@ export const checkToken = () => {
             localStorage.clear();
             dispatch(onLogout());
         }
+    }
+}
 
-
+export const onStartLogout = () => {
+    return (dispatch) => {
+        localStorage.clear();
+        dispatch(onLogout());
+        dispatch(onClearCompany());
+        dispatch(onClearServices());
+        dispatch(onCloseModal());
     }
 }

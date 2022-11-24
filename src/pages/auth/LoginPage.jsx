@@ -11,8 +11,8 @@ export const LoginPage = () => {
     const dispatch = useDispatch();
     const { control, handleSubmit, formState: { errors } } = useForm({criteriaMode: "all", mode: "onBlur"});
 
-    const onSubmit = (data) => {
-        dispatch(loginUser(data));
+    const onSubmit = async (data) => {
+        await dispatch(loginUser(data));
     }
 
     return (
@@ -80,7 +80,7 @@ export const LoginPage = () => {
                         />
                     }
                 />
-                <input type="submit" value="Iniicar sesión" className="bg-primary py-3 px-4 rounded-md" />
+                <input type="submit" value="Iniciar sesión" className="bg-primary py-3 px-4 rounded-md" />
             </form>
 
             <div className="mt-2">
@@ -89,7 +89,7 @@ export const LoginPage = () => {
                 Si deseas registrarte en nuestra aplicación haz clic en el siguiente
                 enlace.
                 </p>
-                <Link to="/auth/register" className="color-primary font-bold">
+                <Link to="/auth/register" className="color-alternative font-bold">
                 Ir a crear nueva cuenta
                 </Link>
             </div>
